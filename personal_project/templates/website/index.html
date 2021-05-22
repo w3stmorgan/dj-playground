@@ -141,7 +141,9 @@
                                         <div class="divider-custom-line"></div>
                                     </div>
                                     <!-- Portfolio Modal - Image-->
+                                    <a href="{% url app.url %}">
                                     <img class="img-fluid rounded mb-5" src="{{ app.image.url }}" alt="..." />
+                                    </a>
                                     <!-- Portfolio Modal - Text-->
                                     <p class="mb-5">{{ app.description }}</p>
                                     <button class="btn btn-primary" data-dismiss="modal">
