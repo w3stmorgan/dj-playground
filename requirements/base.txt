@@ -9,6 +9,7 @@ celery==4.4.6  # pyup: < 5.0,!=4.4.7  # https://github.com/celery/celery
 django-celery-beat==2.2.0  # https://github.com/celery/django-celery-beat
 flower==0.9.7  # https://github.com/mher/flower
 uvicorn[standard]==0.13.4  # https://github.com/encode/uvicorn
+openpyxl==3.0.7  # https://foss.heptapod.net/openpyxl/openpyxl
 
 # Django
 # ------------------------------------------------------------------------------
