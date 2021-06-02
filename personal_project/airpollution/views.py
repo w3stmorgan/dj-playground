@@ -3,7 +3,7 @@ import json
 
 import openpyxl
 from django import forms
-from django.db.models import Count, Q, Sum
+from django.db.models import Q, Sum
 from django.http import HttpResponse
 from django.shortcuts import render
 
