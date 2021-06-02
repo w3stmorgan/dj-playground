@@ -2,7 +2,7 @@ from django.apps import AppConfig
 
 
 class WebsiteConfig(AppConfig):
-    name = 'personal_project.website'
+    name = "personal_project.website"
 
     def ready(self):
         try:
