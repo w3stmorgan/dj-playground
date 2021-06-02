@@ -9,4 +9,3 @@ def index(request):
         'app_name': request.resolver_match.app_name
     }
     return render(request, 'website/index.html', context)
-

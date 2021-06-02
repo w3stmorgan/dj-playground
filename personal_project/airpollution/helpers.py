@@ -2,21 +2,17 @@ class XLSHEADERS():
     COUNTRY = 'country'
     CITY = 'city'
     STATION_NAME = 'stationname'
+    STATION_EOI_CODE = 'stationeoicode'
     AIR_POLLUTANT = 'airpollutant'
-    AIR_POLLUTANT_LEVEL = 'airpollutantlevel'
+    AIR_POLLUTANT_LEVEL = 'level'
     TYPE = 'type'
     AREA = 'area'
     LONGITUDE = 'longitude'
     LATITUDE = 'latitude'
     ALTITUDE = 'altitude'
 
-    choices = [COUNTRY,CITY,STATION_NAME,AIR_POLLUTANT,AIR_POLLUTANT_LEVEL,TYPE,AREA,LONGITUDE,LATITUDE,ALTITUDE]
+    choices = [COUNTRY,CITY,STATION_NAME,AIR_POLLUTANT,AIR_POLLUTANT_LEVEL,TYPE,AREA,LONGITUDE,LATITUDE,ALTITUDE,STATION_EOI_CODE]
 
-def xstr(s) -> str:
-    if s is None:
-        return ''
-    else:
-        return s
 def get_headers_and_units(ws):
     headers_row = None
     headers = {}
@@ -34,7 +30,9 @@ def get_headers_and_units(ws):
     # Remember headers positions
     for i in range(ws.max_column):
         column = chr(i + 65)
-        header = xstr(ws[column][headers_row].value)
+        header = ws[column][headers_row].value
+        if header is None:
+            break
         header = header.strip().replace('_', '').lower()
 
         # Get units
@@ -44,7 +42,6 @@ def get_headers_and_units(ws):
                 if header[index] == ')':
                     break
                 units += header[index]
-            continue
         elif 'unit' in header:
             units = ws[column][headers_row + 1].value
             continue
