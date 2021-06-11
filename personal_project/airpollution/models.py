@@ -5,6 +5,7 @@ class Pollutant(models.Model):
     """Pollution model for airpollution app"""
 
     name = models.CharField(max_length=10, primary_key=True)
+    limit_value = models.SmallIntegerField(null=True)
     removed = models.BooleanField(default=False)
 
     def __str__(self):
