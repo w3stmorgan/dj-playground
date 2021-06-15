@@ -3,6 +3,7 @@ import json
 
 import openpyxl
 from django import forms
+from django.contrib import messages
 from django.db.models import Q, Sum
 from django.http import HttpResponse
 from django.shortcuts import render
@@ -206,7 +207,6 @@ def temp_country_creator(request):
 
 
 def upload(request):
-    context = {}
     if request.method == "GET":
         pass
     elif request.method == "POST":
@@ -267,13 +267,11 @@ def upload(request):
                     year=year, pollutant=pollutant[0]
                 ).delete()
                 PollutantEntry.objects.bulk_create(to_insert)
-        context = {
-            "message_success": "File uploaded successfully!",
-        }
+        messages.success(request, "File uploaded successfully!")
     else:  # request method not POST
         return HttpResponse("Only accepted methods are GET nad POST!")
 
-    return render(request, "airpollution/upload.html", context)
+    return render(request, "airpollution/upload.html")
 
 
 def table(request):

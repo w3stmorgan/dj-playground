@@ -1,3 +1,4 @@
+from django.http import HttpResponse
 from django.shortcuts import render
 
 
@@ -8,3 +9,7 @@ def index(request):
 
 def samples(request):
     return render(request, "website/samples.html")
+
+
+def temp_twilio(request):
+    return HttpResponse(request)
