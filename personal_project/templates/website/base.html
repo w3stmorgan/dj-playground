@@ -313,6 +313,15 @@
       <!-- End of Topbar -->
 
       <!-- Begin Page Content -->
+      {% if messages %}
+          {% for message in messages %}
+              <div class="alert alert-{% if message.tags == 'info' %}primary
+                {% elif message.tags == 'error' %}danger{% else %}{{ message.tags }}{% endif %}" role="alert">
+                {{ message }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              </div>
+          {% endfor %}
+      {% endif %}
       <div class="container-fluid">
         {% block content %}
         {% endblock %}

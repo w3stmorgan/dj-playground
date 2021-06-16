@@ -1,0 +1,13 @@
+{% extends 'website/base.html' %}
+
+{% block content %}
+  <div class="row">
+    <div class="col-lg-8 mx-auto">
+      <h1>Income {{ income.pk }}</h1>
+      <form method="post">{% csrf_token %}
+        <p>Are you sure you want to delete "{{ object }}"?</p>
+        <input type="submit" value="Confirm">
+      </form>
+    </div>
+  </div>
+{% endblock %}

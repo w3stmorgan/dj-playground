@@ -1,0 +1,22 @@
+{% extends 'website/base.html' %}
+
+{% block content %}
+  <div class="row">
+    <div class="col-lg-8 mx-auto">
+      <h1>Income {{ income.pk }}</h1>
+      <ul>
+        <li>Date: {{ income.date|date }}</li>
+        <li>Type: {{ income.get_type_display }}</li>
+        <li>Value: ${{ income.value }}</li>
+        <li>Repetitive: {{ income.repetitive }}</li>
+        {% if income.repetitive %}
+          <li>
+            Every: {{ income.repetitive_time }} {{ income.get_repetitive_interval_display }}
+          </li>
+        {% endif %}
+      </ul>
+    <a href="{% url 'finances:income_update' object.pk %}">Update</a>
+    <a href="{% url 'finances:income_delete' object.pk %}">Delete</a>
+    </div>
+  </div>
+{% endblock %}

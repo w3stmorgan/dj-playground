@@ -23,6 +23,7 @@ urlpatterns = [
         "airpollution/",
         include("personal_project.airpollution.urls", namespace="airpollution"),
     ),
+    path("finances/", include("personal_project.finances.urls", namespace="finances")),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 if settings.DEBUG:
     # Static file serving when using Gunicorn + Uvicorn for local web socket development
