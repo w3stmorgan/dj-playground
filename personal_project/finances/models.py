@@ -23,6 +23,8 @@ class Income(models.Model):
         choices=RInterval.choices, default=5
     )
     repetitive_time = models.PositiveSmallIntegerField(default=0)
+    comment_char = models.CharField(max_length=255, null=True, blank=True)
+    comment_text = models.TextField(null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):

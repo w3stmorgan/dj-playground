@@ -1,4 +1,5 @@
-from django.urls import reverse_lazy
+from django.contrib import messages
+from django.urls import reverse, reverse_lazy
 from django.views.generic import (
     CreateView,
     DeleteView,
@@ -7,6 +8,7 @@ from django.views.generic import (
     UpdateView,
 )
 
+from .forms import IncomeForm
 from .models import Income
 
 
@@ -21,33 +23,28 @@ class IncomeDetailView(DetailView):
 
 class IncomeCreateView(CreateView):
     model = Income
-    fields = [
-        "value",
-        "date",
-        "type",
-        "repetitive",
-        "repetitive_interval",
-        "repetitive_time",
-    ]
-    success_url = reverse_lazy("finances:income_list")
+    form_class = IncomeForm
+
+    def get_success_url(self) -> str:
+        messages.success(self.request, "Income created successfully!")
+        return reverse_lazy("finances:income_list")
 
 
 class IncomeUpdateView(UpdateView):
     model = Income
-    fields = [
-        "value",
-        "date",
-        "type",
-        "repetitive",
-        "repetitive_interval",
-        "repetitive_time",
-    ]
-    success_url = reverse_lazy("finances:income_list")
+    form_class = IncomeForm
+
+    def get_success_url(self) -> str:
+        messages.success(self.request, "Income updated successfully!")
+        return reverse("finances:income_detail", kwargs={"pk": self.object.pk})
 
 
 class IncomeDeleteView(DeleteView):
     model = Income
-    success_url = reverse_lazy("finances:income_list")
+
+    def get_success_url(self) -> str:
+        messages.success(self.request, "Income created successfully!")
+        return reverse_lazy("finances:income_list")
 
 
 income_list = IncomeListView.as_view()

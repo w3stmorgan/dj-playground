@@ -60,28 +60,51 @@
       Apps
     </div>
 
-    <!-- Nav Item - Pages Collapse Menu -->
+    <!-- Nav Item - Airpollutionn   Collapse Menu -->
     <li class="nav-item {% if app_name == 'airpollution' %} active {% endif %}">
       <a class="nav-link {% if app_name != 'airpollution' %} collapsed {% endif %}" href="#" data-toggle="collapse"
-         data-target="#collapseTwo"
-         aria-expanded="true" aria-controls="collapseTwo">
+         data-target="#collapseOne"
+         aria-expanded="true" aria-controls="collapseOne">
         <i class="fas fa-fw fa-cog"></i>
         <span>Airpollution app</span>
       </a>
-      <div id="collapseTwo" class="collapse {% if app_name == 'airpollution' %} show {% endif %}"
-           aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+      <div id="collapseOne" class="collapse {% if app_name == 'airpollution' %} show {% endif %}"
+           aria-labelledby="headingOne" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
           <h6 class="collapse-header">Upload data</h6>
           {% url 'airpollution:upload' as airpollution_upload %}
           <a class="collapse-item {% if page_path == airpollution_upload %} active {% endif %}"
-             href="{% url 'airpollution:upload' %}">Upload</a>
+             href="{{ airpollution_upload }}">Upload</a>
           <h6 class="collapse-header">View data</h6>
           {% url 'airpollution:table' as airpollution_table %}
           <a class="collapse-item{% if page_path == airpollution_table %} active {% endif %}"
-             href="{% url 'airpollution:table' %}">Tables</a>
+             href="{{ airpollution_table }}">Tables</a>
           {% url 'airpollution:charts' as airpollution_charts %}
           <a class="collapse-item{% if page_path == airpollution_charts %} active {% endif %}"
-             href="{% url 'airpollution:charts' %}">Charts</a>
+             href="{{ airpollution_charts }}">Charts</a>
+        </div>
+      </div>
+    </li>
+
+    <!-- Nav Item - Finances  Collapse Menu -->
+    <li class="nav-item {% if app_name == 'finances' %} active {% endif %}">
+      <a class="nav-link {% if app_name != 'finances' %} collapsed {% endif %}" href="#" data-toggle="collapse"
+         data-target="#collapseTwo"
+         aria-expanded="true" aria-controls="collapseTwo">
+        <i class="fas fa-fw fa-cog"></i>
+        <span>Finances app</span>
+      </a>
+      <div id="collapseTwo" class="collapse {% if app_name == 'finances' %} show {% endif %}"
+           aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+        <div class="bg-white py-2 collapse-inner rounded">
+          <h6 class="collapse-header">Update finances:</h6>
+          {% url 'finances:income_create' as finances_income_create %}
+          <a class="collapse-item {% if page_path == finances_income_create %} active {% endif %}"
+             href="{{finances_income_create}}">Add Income</a>
+          <h6 class="collapse-header">View finances:</h6>
+          {% url 'finances:income_list' as finances_income_list %}
+          <a class="collapse-item{% if page_path == finances_income_list %} active {% endif %}"
+             href="{{ finances_income_list }}">List Income</a>
         </div>
       </div>
     </li>
@@ -314,13 +337,14 @@
 
       <!-- Begin Page Content -->
       {% if messages %}
-          {% for message in messages %}
-              <div class="alert alert-{% if message.tags == 'info' %}primary
+        {% for message in messages %}
+          <div class="alert alert-{% if message.tags == 'info' %}primary
                 {% elif message.tags == 'error' %}danger{% else %}{{ message.tags }}{% endif %}" role="alert">
-                {{ message }}
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-              </div>
-          {% endfor %}
+            {{ message }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                    aria-hidden="true">&times;</span></button>
+          </div>
+        {% endfor %}
       {% endif %}
       <div class="container-fluid">
         {% block content %}
