@@ -1,5 +1,7 @@
 from django.db import models
 
+from config.settings.base import AUTH_USER_MODEL
+
 
 class Income(models.Model):
     class ITypes(models.IntegerChoices):
@@ -15,6 +17,9 @@ class Income(models.Model):
         YEA = 4, "YEARS"
         NA = 5, "N/A"
 
+    user = models.ForeignKey(
+        AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="incomes"
+    )
     value = models.DecimalField(max_digits=10, decimal_places=2)
     date = models.DateField()
     type = models.PositiveSmallIntegerField(choices=ITypes.choices)
@@ -23,8 +28,7 @@ class Income(models.Model):
         choices=RInterval.choices, default=5
     )
     repetitive_time = models.PositiveSmallIntegerField(default=0)
-    comment_char = models.CharField(max_length=255, null=True, blank=True)
-    comment_text = models.TextField(null=True, blank=True)
+    comment = models.TextField(null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
@@ -53,6 +57,9 @@ class Outcome(models.Model):
         YEA = 4, "YEARS"
         NA = 5, "N/A"
 
+    user = models.ForeignKey(
+        AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="outcomes"
+    )
     value = models.DecimalField(max_digits=10, decimal_places=2)
     date = models.DateField()
     type = models.PositiveSmallIntegerField(choices=OTypes.choices)
@@ -61,6 +68,7 @@ class Outcome(models.Model):
         choices=RInterval.choices, default=5
     )
     repetitive_time = models.PositiveSmallIntegerField(default=0)
+    comment = models.TextField(null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
@@ -75,6 +83,9 @@ class Balance(models.Model):
         CUR = 1, "CURRENT"
         SAV = 2, "SAVINGS"
 
+    user = models.ForeignKey(
+        AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="balances"
+    )
     value = models.DecimalField(max_digits=10, decimal_places=2)
     type = models.PositiveSmallIntegerField(choices=BTypes.choices)
     updated_at = models.DateTimeField(auto_now=True)

@@ -100,12 +100,18 @@
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Update finances:</h6>
             {% url 'finances:income_create' as finances_income_create %}
+            {% url 'finances:outcome_create' as finances_outcome_create %}
             <a class="collapse-item {% if page_path == finances_income_create %} active {% endif %}"
                href="{{ finances_income_create }}">Add Income</a>
+            <a class="collapse-item {% if page_path == finances_outcome_create %} active {% endif %}"
+               href="{{ finances_outcome_create }}">Add Outcome</a>
             <h6 class="collapse-header">View finances:</h6>
             {% url 'finances:income_list' as finances_income_list %}
+            {% url 'finances:outcome_list' as finances_outcome_list %}
             <a class="collapse-item{% if page_path == finances_income_list %} active {% endif %}"
                href="{{ finances_income_list }}">List Income</a>
+            <a class="collapse-item{% if page_path == finances_outcome_list %} active {% endif %}"
+               href="{{ finances_outcome_list }}">List Outcome</a>
           </div>
         </div>
       </li>

@@ -1,0 +1,28 @@
+{% extends 'website/base.html' %}
+
+{% block content %}
+  <div class="row">
+    <div class="col-lg-8 mx-auto">
+      <h1>{{ type }}</h1>
+      <ul>
+        {% for object in object_list %}
+          <li>
+            {% if type == 'Income' %}
+              <a href="{% url 'finances:income_detail' object.pk %}">
+            {% else %}
+              <a href="{% url 'finances:outcome_detail' object.pk %}">
+            {% endif %}
+            {{ object.date|date }} - {{ object.get_type_display }} - ${{ object.value }} -
+            Repetitive: {{ object.repetitive }}
+            {% if object.repetitive %}
+              every {{ object.repetitive_time }} {{ object.get_repetitive_interval_display }}
+            {% endif %}
+            </a>
+          </li>
+        {% empty %}
+          <li>Nothing to show yet.</li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+{% endblock %}
