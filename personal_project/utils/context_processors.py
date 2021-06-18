@@ -12,4 +12,5 @@ def add_page_info(request):
     return {
         "app_name": request.resolver_match.app_name,
         "page_path": request.path,
+        "user": request.user if request.user.is_authenticated else None,
     }
