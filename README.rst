@@ -9,9 +9,13 @@ Hi!
 .. image:: https://img.shields.io/badge/code%20style-black-000000.svg
      :target: https://github.com/ambv/black
      :alt: Black code style
+     
 
 Settings
 --------
+<p align="center">
+    <a href="https://github.com/w3stmorgan/dj-playground/actions?query=workflow%3ACI"><img src="https://img.shields.io/github/workflow/status/w3stmorgan/dj-playground/CI/master">
+</p>
 
 Moved to settings_.
 
