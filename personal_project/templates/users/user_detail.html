@@ -2,33 +2,23 @@
 {% load static %}
 
 {% block title %}User: {{ object.username }}{% endblock %}
-
 {% block content %}
-<div class="container">
-
-  <div class="row">
-    <div class="col-sm-12">
-
-      <h2>{{ object.username }}</h2>
-      {% if object.name %}
-        <p>{{ object.name }}</p>
-      {% endif %}
+<div class="container mt-5 d-flex justify-content-center">
+    <div class="card p-3">
+        <div class="d-flex align-items-center">
+            <div class="image"> <img src="https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=80" class="rounded" width="155"> </div>
+            <div class="ml-3 w-100">
+                <h4 class="mb-0 mt-0">{{ object.name }}</h4> <span>{{ object.username }}</span>
+                <div class="p-2 mt-2 bg-primary d-flex justify-content-between rounded text-white stats">
+                    <div class="d-flex flex-column"> <span class="articles"> User ID</span> <span class="number1">{{ object.id }}</span></div>
+                    <div class="d-flex flex-column"> <span class="followers"> Joined</span> <span class="number2">{{ object.date_joined }}</span> </div>
+                    <div class="d-flex flex-column"> <span class="rating"> Stuff</span> <span class="number3">{{ object.is_staff }}</span> </div>
+                </div>
+              {% if object == request.user %}
+                <div class="button mt-2 d-flex flex-row align-items-center"> <a class="btn btn-sm btn-outline-primary w-100" href="{% url 'users:update' %}">Info</a> <a class="btn btn-sm btn-primary w-100 ml-2" href="{% url 'account_email' %}">Email</a> </div>
+              {% endif %}
+            </div>
+        </div>
     </div>
-  </div>
-
-{% if object == request.user %}
-<!-- Action buttons -->
-<div class="row">
-
-  <div class="col-sm-12">
-    <a class="btn btn-primary" href="{% url 'users:update' %}" role="button">My Info</a>
-    <a class="btn btn-primary" href="{% url 'account_email' %}" role="button">E-Mail</a>
-    <!-- Your Stuff: Custom user template urls -->
-  </div>
-
-</div>
-<!-- End Action buttons -->
-{% endif %}
-
 </div>
 {% endblock content %}

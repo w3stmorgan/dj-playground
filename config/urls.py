@@ -18,7 +18,7 @@ urlpatterns = [
     path("users/", include("personal_project.users.urls", namespace="users")),
     path("accounts/", include("allauth.urls")),
     # Your stuff: custom urls includes go here
-    path("website/", include("personal_project.website.urls", namespace="website")),
+    path("dashboard/", include("personal_project.website.urls", namespace="website")),
     path(
         "airpollution/",
         include("personal_project.airpollution.urls", namespace="airpollution"),
