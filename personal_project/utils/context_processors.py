@@ -11,7 +11,7 @@ def settings_context(_request):
 def add_page_info(request):
     return {
         "app_name": request.resolver_match.app_name
-        if request.resolver_match.app_name
+        if hasattr(request.resolver_match, "app_name")
         else "",
         "page_path": request.path,
         "user": request.user if request.user.is_authenticated else None,
